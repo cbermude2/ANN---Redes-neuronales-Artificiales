@@ -1,25 +1,25 @@
 :root {
-    --primary: #8E1B3A; /* Vinotinto */
-    --secondary: #2D58A0; /* Azul */
-    --dark: #24292e;
-    --light: #f6f8fa;
+    --primary: #8E1B3A;
+    --secondary: #2D58A0;
+    --text: #333;
 }
 
 body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
-    background-color: #fff;
+    color: var(--text);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
+/* Header simplificado */
 header {
-    padding: 20px 0;
-    border-bottom: 2px solid #eee;
+    padding: 15px 0;
+    border-bottom: 3px solid var(--primary);
     background: #fff;
 }
 
@@ -32,54 +32,44 @@ header {
 .brand-section {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
-.logo { height: 70px; }
+.logo { height: 60px; }
 
-.header-text h1 { color: var(--primary); margin: 0; font-size: 1.8rem; }
-.subtitle { color: var(--secondary); font-weight: bold; margin: 0; }
-.teacher { color: #666; margin: 0; font-size: 0.9rem; }
+.header-text h1 { margin: 0; color: var(--primary); font-size: 1.6rem; }
+.header-text p { margin: 0; color: var(--secondary); font-size: 0.9rem; font-weight: 600; }
+.teacher { font-size: 0.85rem; color: #666; }
 
-/* Recursos en el Header */
-.header-resources {
-    display: flex;
-    gap: 25px;
+.header-links { display: flex; gap: 30px; }
+.nav-item { text-decoration: none; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.nav-item i { font-size: 1.5rem; color: var(--primary); }
+.nav-item strong { font-size: 0.9rem; }
+
+/* Tabla estilo imagen adjunta */
+.table-container { margin-top: 30px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+
+thead th {
+    background-color: var(--secondary);
+    color: white;
+    text-align: left;
+    padding: 12px 15px;
+    font-weight: 600;
 }
 
-.resource-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: var(--dark);
-    padding: 8px 15px;
-    border-radius: 8px;
-    transition: background 0.2s;
+tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
 }
 
-.resource-item:hover { background: var(--light); }
-.resource-item i { font-size: 1.8rem; color: var(--primary); }
-.res-text strong { display: block; font-size: 0.95rem; }
-.res-text span { font-size: 0.75rem; color: #666; }
+/* Enlaces de celdas */
+.link-text { color: var(--secondary); text-decoration: underline; }
+.link-code { color: var(--secondary); font-weight: bold; text-decoration: none; }
+.link-code i { color: var(--secondary); }
+.link-video { color: var(--secondary); font-weight: bold; text-decoration: none; }
+.link-video i { color: #8E1B3A; } /* Icono video en vinotinto */
 
-/* Estilo de la Tabla */
-.table-container { margin-top: 30px; border: 1px solid #e1e4e8; border-radius: 10px; overflow: hidden; }
-table { width: 100%; border-collapse: collapse; }
-th { background: var(--light); padding: 15px; text-align: left; color: var(--secondary); font-size: 0.8rem; text-transform: uppercase; }
-td { padding: 15px; border-top: 1px solid #e1e4e8; }
-
-/* Botones */
-.btn-main { background: var(--secondary); color: white; padding: 8px 15px; text-decoration: none; border-radius: 5px; font-weight: 500; }
-.actions { display: flex; gap: 8px; }
-.btn-sub { 
-    background: #f3f4f6; 
-    color: var(--dark); 
-    padding: 6px 12px; 
-    text-decoration: none; 
-    border-radius: 5px; 
-    font-size: 0.85rem; 
-    border: 1px solid #d1d5db;
+@media (max-width: 900px) {
+    .header-content { flex-direction: column; gap: 15px; text-align: center; }
 }
-.btn-sub.video { color: #d93025; border-color: #f8d7da; }
-.btn-sub:hover { background: #e5e7eb; }
