@@ -15,74 +15,115 @@
                 <img src="resource/logo.png" alt="Logo UCSG TEC" class="logo">
                 <div class="header-text">
                     <h1>Aplicación de Redes Neuronales</h1>
-                    <p class="subtitle">Carrera de Inteligencia Artificial | Ciclo A2026</p>
-                    <p class="teacher">Docente: Ing. Adriana Larrea, Mgs.</p>
+                    <p>Carrera de Inteligencia Artificial | Ciclo A2026</p>
+                    <span class="teacher">Docente: Ing. Adriana Larrea, Mgs.</span>
                 </div>
             </div>
 
-            <div class="header-resources">
-                <a href="https://tec.ucsg.edu.ec/" target="_blank" class="resource-item">
+            <div class="header-links">
+                <a href="https://tec.ucsg.edu.ec/" target="_blank" class="nav-item">
                     <i class="fas fa-laptop-code"></i>
-                    <div class="res-text">
-                        <strong>Plataforma Virtual</strong>
-                        <span>Aula virtual y lecturas</span>
-                    </div>
+                    <strong>Plataforma Virtual</strong>
                 </a>
-                <a href="https://www.ucsg.edu.ec/ucsg-online/" target="_blank" class="resource-item">
+                <a href="https://www.ucsg.edu.ec/ucsg-online/" target="_blank" class="nav-item">
                     <i class="fas fa-university"></i>
-                    <div class="res-text">
-                        <strong>Servicios en Línea</strong>
-                        <span>Notas y Biblioteca</span>
-                    </div>
+                    <strong>Servicios en Línea</strong>
                 </a>
             </div>
         </div>
     </header>
 
     <main class="container">
-        <section class="calendar">
-            <h2><i class="fas fa-folder-open"></i> Contenido del Curso por Temas</h2>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Sesión</th>
-                            <th>Título de la Clase</th>
-                            <th>Guía (README)</th>
-                            <th>Descargas y Video</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>19 Mar</td>
-                            <td>Tema 1</td>
-                            <td>De la neurona artificial a la decisión [cite: 1]</td>
-                            <td><a href="./Tema_01_Conceptos_Basicos/README.md" class="btn-main">Ver Guía</a></td>
-                            <td class="actions">
-                                <a href="./Tema_01_Conceptos_Basicos/ANN_Practica_Tema 1.py" class="btn-sub"><i class="fas fa-code"></i> Código</a>
-                                <a href="./Tema_01_Conceptos_Basicos/grabacion_clase 1.url" class="btn-sub video"><i class="fas fa-video"></i> Video</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>02 Abr</td>
-                            <td>Tema 3</td>
-                            <td>Particiones, épocas y batch [cite: 12]</td>
-                            <td><a href="./Tema_03_Entrenamiento_Basico/README.md" class="btn-main">Ver Guía</a></td>
-                            <td class="actions">
-                                <a href="./Tema_03_Entrenamiento_Basico/ANN_Practica_Tema 3.py" class="btn-sub"><i class="fas fa-code"></i> Código</a>
-                                <a href="./Tema_03_Entrenamiento_Basico/grabacion_clase 3.url" class="btn-sub video"><i class="fas fa-video"></i> Video</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                </table>
-            </div>
-        </section>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>FECHA</th>
+                        <th>SESIÓN</th>
+                        <th>TÍTULO DE LA CLASE</th>
+                        <th>GUÍA</th>
+                        <th>CÓDIGO</th>
+                        <th>VIDEO</th>
+                        <th>RECURSO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>19 Mar</td>
+                        <td>Tema 1</td>
+                        <td>De la neurona artificial a la decisión </td>
+                        <td><a href="./Tema_01_Conceptos_Basicos/readme.md" class="link-text">Ver Guía</a></td>
+                        <td><a href="./Tema_01_Conceptos_Basicos/ANN_Practica_Tema1.py" class="link-code"><i class="fas fa-code"></i> Código</a></td>
+                        <td><a href="./Tema_01_Conceptos_Basicos/grabacion_clase1.url" class="link-video"><i class="fas fa-video"></i> Video</a></td>
+                        <td><a href="https://tec.ucsg.edu.ec/" class="link-text">Ver recurso</a></td>
+                    </tr>
+                    <tr>
+                        <td>26 Mar</td>
+                        <td>Tema 2</td>
+                        <td>Capas, pesos, sesgos y forward pass [cite: 2]</td>
+                        <td><a href="./Tema_02_Componentes_ANN/readme.md" class="link-text">Ver Guía</a></td>
+                        <td><a href="./Tema_02_Componentes_ANN/ANN_Practica_Tema2.py" class="link-code"><i class="fas fa-code"></i> Código</a></td>
+                        <td><a href="./Tema_02_Componentes_ANN/grabacion_clase2.url" class="link-video"><i class="fas fa-video"></i> Video</a></td>
+                        <td><a href="https://tec.ucsg.edu.ec/" class="link-text">Ver recurso</a></td>
+                    </tr>
+                    <tr>
+                        <td>02 Abr</td>
+                        <td>Tema 3</td>
+                        <td>Entrenamiento: Particiones, épocas y batch [cite: 3]</td>
+                        <td><a href="./Tema_03_Entrenamiento_Basico/readme.md" class="link-text">Ver Guía</a></td>
+                        <td><a href="./Tema_03_Entrenamiento_Basico/ANN_Practica_Tema3.py" class="link-code"><i class="fas fa-code"></i> Código</a></td>
+                        <td><a href="./Tema_03_Entrenamiento_Basico/grabacion_clase3.url" class="link-video"><i class="fas fa-video"></i> Video</a></td>
+                        <td><a href="https://tec.ucsg.edu.ec/" class="link-text">Ver recurso</a></td>
+                    </tr>
+                    <tr>
+                        <td>09 Abr</td>
+                        <td>Tema 4</td>
+                        <td>Elegir herramienta y armar pipeline [cite: 4]</td>
+                        <td><a href="./Tema_04_Herramientas_Entornos/readme.md" class="link-text">Ver Guía</a></td>
+                        <td><a href="./Tema_04_Herramientas_Entornos/ANN_Practica_Tema4.py" class="link-code"><i class="fas fa-code"></i> Código</a></td>
+                        <td><a href="./Tema_04_Herramientas_Entornos/grabacion_clase4.url" class="link-video"><i class="fas fa-video"></i> Video</a></td>
+                        <td><a href="https://tec.ucsg.edu.ec/" class="link-text">Ver recurso</a></td>
+                    </tr>
+                    <tr>
+                        <td>16 Abr</td>
+                        <td>Tema 5</td>
+                        <td>Clasificación binaria/multiclase con MLP </td>
+                        <td><a href="./Tema_05_Clasificacion_MLP/readme.md" class="link-text">Ver Guía</a></td>
+                        <td><a href="./Tema_05_Clasificacion_MLP/ANN_Practica_Tema5.py" class="link-code"><i class="fas fa-code"></i> Código</a></td>
+                        <td><a href="./Tema_05_Clasificacion_MLP/grabacion_clase5.url" class="link-video"><i class="fas fa-video"></i> Video</a></td>
+                        <td><a href="https://tec.ucsg.edu.ec/" class="link-text">Ver recurso</a></td>
+                    </tr>
+                    <tr>
+                        <td>23 Abr</td>
+                        <td>Tema 6</td>
+                        <td>Regresión con MLP: MAE y MSE </td>
+                        <td><a href="./Tema_06_Regresion_MLP/readme.md" class="link-text">Ver Guía</a></td>
+                        <td><a href="./Tema_06_Regresion_MLP/ANN_Practica_Tema6.py" class="link-code"><i class="fas fa-code"></i> Código</a></td>
+                        <td><a href="./Tema_06_Regresion_MLP/grabacion_clase6.url" class="link-video"><i class="fas fa-video"></i> Video</a></td>
+                        <td><a href="https://tec.ucsg.edu.ec/" class="link-text">Ver recurso</a></td>
+                    </tr>
+                    <tr>
+                        <td>30 Abr</td>
+                        <td>Tema 7</td>
+                        <td>Evaluación básica de modelos </td>
+                        <td><a href="./Tema_07_Evaluacion_Modelos/readme.md" class="link-text">Ver Guía</a></td>
+                        <td><a href="./Tema_07_Evaluacion_Modelos/ANN_Practica_Tema7.py" class="link-code"><i class="fas fa-code"></i> Código</a></td>
+                        <td><a href="./Tema_07_Evaluacion_Modelos/grabacion_clase7.url" class="link-video"><i class="fas fa-video"></i> Video</a></td>
+                        <td><a href="https://tec.ucsg.edu.ec/" class="link-text">Ver recurso</a></td>
+                    </tr>
+                    <tr>
+                        <td>07 May</td>
+                        <td>Tema 8</td>
+                        <td>Mejora práctica y regularización [cite: 8]</td>
+                        <td><a href="./Tema_08_Mejora_Practica/readme.md" class="link-text">Ver Guía</a></td>
+                        <td><a href="./Tema_08_Mejora_Practica/ANN_Practica_Tema8.py" class="link-code"><i class="fas fa-code"></i> Código</a></td>
+                        <td><a href="./Tema_08_Mejora_Practica/grabacion_clase8.url" class="link-video"><i class="fas fa-video"></i> Video</a></td>
+                        <td><a href="https://tec.ucsg.edu.ec/" class="link-text">Ver recurso</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
-
-    <footer>
-        <p>&copy; 2026 UCSG TEC - Especialistas en Inteligencia Artificial</p>
-    </footer>
 
 </body>
 </html>
