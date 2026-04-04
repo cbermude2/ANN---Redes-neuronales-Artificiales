@@ -1,0 +1,73 @@
+'''
+################################
+Estructura del Código
+Caso: Clasificación de correo (spam / no spam)
+################################
+🧩 FASE 1: Importación y definición de datos
+🧮 FASE 2: Función lineal (Z = W·x + b)
+🔁 FASE 3: Forward propagation (paso hacia adelante)
+🎯 FASE 4: Decisión (clasificación binaria)
+'''
+
+import numpy as np
+
+# =========================
+# FASE 1: Importación y definición de datos
+# =========================
+x = np.array([[0.8],
+              [0.1]])
+
+W1 = np.array([[0.5, -0.2],
+               [0.1,  0.01]])
+
+b1 = np.array([[0.1],
+               [-0.1]])
+
+W2 = np.array([[0.7, -0.5]])
+b2 = np.array([[0.2]])
+
+# =========================
+# FASE 2: Función lineal (Z = W·x + b)
+# =========================
+def capa_lineal(W, x, b):
+    return np.dot(W, x) + b
+
+def relu(z):
+    return np.maximum(0, z)
+
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+def clasificar(a, umbral=0.5):
+    return 1 if np.any(a > umbral) else 0
+
+# =========================
+# FASE 3: Forward propagation (paso hacia adelante)
+# =========================
+print("------- CAPA 1 -------")
+print("Capa de entrada:\n", "x1 =", x, "\nW1 =", W1, "\nb1 =", b1)
+
+z1 = np.dot(W1, x) + b1
+print("Capa de oculta:\n","z1 = ",z1)
+
+a1_relu = relu(z1)
+print("Capa de salida:\n","a1 ReLU = ",a1_relu)
+
+
+print("------- CAPA 2 -------")
+print("Capa de entrada:\n", "x2=",a1_relu, "\n W2=",W2, "\n b2=",b2)
+
+z2 = np.dot(W2, a1_relu) + b2
+print("Capa de oculta:\n","z2 = ",z2)
+
+a2_sigmoid = sigmoid(z2)
+print("Capa de salida:\ny_predicción =", a2_sigmoid)
+
+
+# =========================
+# FASE 4: Decisión (clasificación binaria)
+# =========================
+resultado = clasificar(a2_sigmoid[0][0])
+
+print(f"\nProbabilidad final: {a2_sigmoid[0][0]*100:.2f}%")
+print("Clasificación final:", "es spam" if resultado == 1 else "no es spam")
