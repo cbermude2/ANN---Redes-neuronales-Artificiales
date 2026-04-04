@@ -44,7 +44,7 @@
                         <th>GUÍA</th>
                         <th>CÓDIGO</th>
                         <th>VIDEO</th>
-                        <th>RECURSO</th>
+                        <th>RESULTADO</th>
                     </tr>
                 </thead>
                 <tbody id="tabla-temas">
@@ -102,7 +102,7 @@
                     <td>${esActivo ? `<a href="./${t.folder}/readme.md" class="link-text">Ver Guía</a>` : 'Próximamente'}</td>
                     <td>${esActivo ? `<a href="./${t.folder}/ANN_Practica.txt" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a>` : '-'}</td>
                     <td>${esActivo ? `<a href="#" onclick="abrirURL('./${t.folder}/grabacion_clase.url')" class="link-video"><i class="fas fa-video"></i> Video</a>` : '-'}</td>
-                    <td>${esActivo ? `<a href="./${t.folder}/image1.png" target="_blank" class="link-text">Ver recurso</a>` : '-'}</td>
+                    <td>${esActivo ? `<a href="./${t.folder}/image1.png" target="_blank" class="link-text">Ver resultado</a>` : '-'}</td>
                 `;
                 tabla.appendChild(fila);
             });
