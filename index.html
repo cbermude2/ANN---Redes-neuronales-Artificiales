@@ -54,94 +54,68 @@
     </main>
 
     <script>
-        async function cargarContenido() {
+        async function inicializar() {
             try {
-                const response = await fetch('temas.md');
+                // Forzamos la lectura de temas.txt (ajustado según tu archivo subido)
+                const response = await fetch('temas.txt');
                 const texto = await response.text();
-                const temas = procesarMD(texto);
-                renderizar(temas);
-            } catch (e) {
-                console.error("Error cargando temas.md", e);
+                const temas = procesarInformacion(texto);
+                dibujarTabla(temas);
+            } catch (error) {
+                console.error("Error cargando el archivo:", error);
             }
         }
 
-        function procesarMD(texto) {
+        function procesarInformacion(texto) {
             const lineas = texto.split('\n');
-            const lista = [];
-            let item = null;
-
-            // Mapeo de meses para comparar con la fecha actual
-            const mesesMap = { "Mar": 2, "Abr": 3, "May": 4, "Jun": 5 };
-
-            lineas.forEach(linea => {
-                const l = linea.trim();
-                
-                // 1. Detectar Guía y Tema (Título)
-                if (l.toLowerCase().includes("guía") && l.includes(":")) {
-                    const partes = l.split(':');
-                    item = { titulo: partes[1].trim(), fechaStr: "", fechaObj: null };
-                }
-
-                // 2. Detectar Fecha (Ej: 19 Mar)
-                const regexFecha = /(\d{2})\s(Mar|Abr|May|Jun)/i;
-                const match = l.match(regexFecha);
-
-                if (match && item) {
-                    item.fechaStr = match[0];
-                    // Crear objeto fecha para 2026
-                    item.fechaObj = new Date(2026, mesesMap[match[2]], parseInt(match[1]));
-                    lista.push({...item});
-                    item = null;
-                }
-            });
-            return lista;
-        }
-
-        function renderizar(temas) {
-            const hoy = new Date();
-            const tbody = document.getElementById('tabla-temas');
+            const listaTemas = [];
             
-            // Nombres de carpetas según estructura física
-            const folders = [
-                "Tema_01_Conceptos_Basicos", "Tema_02_Componentes_ANN", 
-                "Tema_03_Entrenamiento_Basico", "Tema_04_Herramientas_Entornos",
-                "Tema_05_Clasificacion_MLP", "Tema_06_Regresion_MLP",
-                "Tema_07_Evaluacion_Modelos", "Tema_08_Mejora_Practica"
+            // Definición manual de los 8 temas y sus carpetas según tu estructura
+            const configTemas = [
+                { id: 1, folder: "Tema_01_Conceptos_Basicos", titulo: "De la neurona artificial a la decisión", fecha: new Date(2026, 2, 19), fechaStr: "19 Mar" },
+                { id: 2, folder: "Tema_02_Componentes_ANN", titulo: "Capas, pesos, sesgos y forward pass", fecha: new Date(2026, 2, 26), fechaStr: "26 Mar" },
+                { id: 3, folder: "Tema_03_Entrenamiento_Basico", titulo: "Entrenar sin magia: particiones y épocas", fecha: new Date(2026, 3, 2), fechaStr: "02 Abr" },
+                { id: 4, folder: "Tema_04_Herramientas_Entornos", titulo: "Elegir herramienta y armar un pipeline", fecha: new Date(2026, 3, 9), fechaStr: "09 Abr" },
+                { id: 5, folder: "Tema_05_Clasificacion_MLP", titulo: "Clasificación binaria/multiclase", fecha: new Date(2026, 3, 16), fechaStr: "16 Abr" },
+                { id: 6, folder: "Tema_06_Regresion_MLP", titulo: "Regresión con MLP: MAE y MSE", fecha: new Date(2026, 3, 23), fechaStr: "23 Abr" },
+                { id: 7, folder: "Tema_07_Evaluacion_Modelos", titulo: "Métricas que sí sirven", fecha: new Date(2026, 3, 30), fechaStr: "30 Abr" },
+                { id: 8, folder: "Tema_08_Mejora_Practica", titulo: "Mejorar sin complicarse: Hiperparámetros", fecha: new Date(2026, 4, 7), fechaStr: "07 May" }
             ];
 
-            tbody.innerHTML = "";
-            temas.forEach((t, i) => {
-                const folder = folders[i] || `Tema_0${i+1}`;
-                const habilitado = hoy >= t.fechaObj;
-                const tr = document.createElement('tr');
-                
-                if (!habilitado) tr.classList.add('bloqueado');
+            return configTemas;
+        }
 
-                tr.innerHTML = `
+        function dibujarTabla(temas) {
+            const hoy = new Date();
+            const tabla = document.getElementById('tabla-temas');
+            tabla.innerHTML = "";
+
+            temas.forEach(t => {
+                const esActivo = hoy >= t.fecha;
+                const fila = document.createElement('tr');
+                if (!esActivo) fila.className = 'bloqueado';
+
+                fila.innerHTML = `
                     <td>${t.fechaStr}</td>
-                    <td>Tema ${i + 1}</td>
+                    <td>Tema ${t.id}</td>
                     <td>${t.titulo}</td>
-                    <td>${habilitado ? `<a href="./${folder}/readme.md" class="link-text">Ver Guía</a>` : 'Próximamente'}</td>
-                    <td>${habilitado ? `<a href="./${folder}/ANN_Practica.txt" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a>` : '-'}</td>
-                    <td>${habilitado ? `<a href="#" onclick="verVideo('./${folder}/grabacion_clase.url')" class="link-video"><i class="fas fa-video"></i> Video</a>` : '-'}</td>
-                    <td>${habilitado ? `<a href="#" onclick="verImagen('./${folder}/image1.png')" class="link-text">Ver recurso</a>` : '-'}</td>
+                    <td>${esActivo ? `<a href="./${t.folder}/readme.md" class="link-text">Ver Guía</a>` : 'Próximamente'}</td>
+                    <td>${esActivo ? `<a href="./${t.folder}/ANN_Practica.txt" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a>` : '-'}</td>
+                    <td>${esActivo ? `<a href="#" onclick="abrirURL('./${t.folder}/grabacion_clase.url')" class="link-video"><i class="fas fa-video"></i> Video</a>` : '-'}</td>
+                    <td>${esActivo ? `<a href="./${t.folder}/image1.png" target="_blank" class="link-text">Ver recurso</a>` : '-'}</td>
                 `;
-                tbody.appendChild(tr);
+                tabla.appendChild(fila);
             });
         }
 
-        function verVideo(path) {
-            fetch(path).then(r => r.text()).then(t => {
-                const url = t.match(/URL=(.+)/);
-                if (url) window.open(url[1].trim(), '_blank');
-            }).catch(() => alert("No disponible"));
+        function abrirURL(ruta) {
+            fetch(ruta).then(r => r.text()).then(t => {
+                const m = t.match(/URL=(.+)/);
+                if (m) window.open(m[1].trim(), '_blank');
+            }).catch(() => alert("El video aún no ha sido cargado."));
         }
 
-        function verImagen(path) {
-            window.open(path, '_blank');
-        }
-
-        window.onload = cargarContenido;
+        window.onload = inicializar;
     </script>
 </body>
 </html>
