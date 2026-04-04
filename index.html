@@ -19,15 +19,9 @@
                     <span class="teacher">Docente: Ing. Adriana Larrea, Mgs.</span>
                 </div>
             </div>
-
             <div class="header-links">
                 <a href="https://tec.ucsg.edu.ec/" target="_blank" class="nav-item">
-                    <i class="fas fa-laptop-code"></i>
-                    <strong>Plataforma Virtual</strong>
-                </a>
-                <a href="https://www.ucsg.edu.ec/ucsg-online/" target="_blank" class="nav-item">
-                    <i class="fas fa-university"></i>
-                    <strong>Servicios en Línea</strong>
+                    <i class="fas fa-laptop-code"></i><strong>Plataforma Virtual</strong>
                 </a>
             </div>
         </div>
@@ -35,7 +29,7 @@
 
     <main class="container">
         <div class="table-container">
-            <table>
+            <table id="main-table">
                 <thead>
                     <tr>
                         <th>FECHA</th>
@@ -47,102 +41,97 @@
                         <th>RECURSO</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>19 Mar</td>
-                        <td>Tema 1</td>
-                        <td>De la neurona artificial a la decisión</td>
-                        <td><a href="./Tema_01_Conceptos_Basicos/readme.md" class="link-text">Ver Guía</a></td>
-                        <td><a href="./Tema_01_Conceptos_Basicos/ANN_Practica_Tema1.py" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a></td>
-                        <td><a href="#" onclick="abrirVideo('./Tema_01_Conceptos_Basicos/grabacion_clase1.url')" class="link-video"><i class="fas fa-video"></i> Video</a></td>
-                        <td><a href="#" onclick="verificarRecurso('./Tema_01_Conceptos_Basicos/image1.png')" class="link-text">Ver recurso</a></td>
-                    </tr>
-                    <tr>
-                        <td>26 Mar</td>
-                        <td>Tema 2</td>
-                        <td>Capas, pesos y forward pass</td>
-                        <td><a href="./Tema_02_Componentes_ANN/readme.md" class="link-text">Ver Guía</a></td>
-                        <td><a href="./Tema_02_Componentes_ANN/ANN_Practica_Tema2.py" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a></td>
-                        <td><a href="#" onclick="abrirVideo('./Tema_02_Componentes_ANN/grabacion_clase2.url')" class="link-video"><i class="fas fa-video"></i> Video</a></td>
-                        <td><a href="#" onclick="verificarRecurso('./Tema_02_Componentes_ANN/image1.png')" class="link-text">Ver recurso</a></td>
-                    </tr>
-                    <tr>
-                        <td>02 Abr</td>
-                        <td>Tema 3</td>
-                        <td>Entrenamiento: Particiones y épocas</td>
-                        <td><a href="./Tema_03_Entrenamiento_Basico/readme.md" class="link-text">Ver Guía</a></td>
-                        <td><a href="./Tema_03_Entrenamiento_Basico/ANN_Practica_Tema3.py" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a></td>
-                        <td><a href="#" onclick="abrirVideo('./Tema_03_Entrenamiento_Basico/grabacion_clase3.url')" class="link-video"><i class="fas fa-video"></i> Video</a></td>
-                        <td><a href="#" onclick="verificarRecurso('./Tema_03_Entrenamiento_Basico/image1.png')" class="link-text">Ver recurso</a></td>
-                    </tr>
-                    <tr>
-                        <td>09 Abr</td>
-                        <td>Tema 4</td>
-                        <td>Herramientas y pipelines</td>
-                        <td><a href="./Tema_04_Herramientas_Entornos/readme.md" class="link-text">Ver Guía</a></td>
-                        <td><a href="./Tema_04_Herramientas_Entornos/ANN_Practica_Tema4.py" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a></td>
-                        <td><a href="#" onclick="abrirVideo('./Tema_04_Herramientas_Entornos/grabacion_clase4.url')" class="link-video"><i class="fas fa-video"></i> Video</a></td>
-                        <td><a href="#" onclick="verificarRecurso('./Tema_04_Herramientas_Entornos/image1.png')" class="link-text">Ver recurso</a></td>
-                    </tr>
-                    <tr>
-                        <td>16 Abr</td>
-                        <td>Tema 5</td>
-                        <td>Clasificación con MLP</td>
-                        <td><a href="./Tema_05_Clasificacion_MLP/readme.md" class="link-text">Ver Guía</a></td>
-                        <td><a href="./Tema_05_Clasificacion_MLP/ANN_Practica_Tema5.py" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a></td>
-                        <td><a href="#" onclick="abrirVideo('./Tema_05_Clasificacion_MLP/grabacion_clase5.url')" class="link-video"><i class="fas fa-video"></i> Video</a></td>
-                        <td><a href="#" onclick="verificarRecurso('./Tema_05_Clasificacion_MLP/image1.png')" class="link-text">Ver recurso</a></td>
-                    </tr>
-                    <tr>
-                        <td>23 Abr</td>
-                        <td>Tema 6</td>
-                        <td>Regresión: MAE y MSE</td>
-                        <td><a href="./Tema_06_Regresion_MLP/readme.md" class="link-text">Ver Guía</a></td>
-                        <td><a href="./Tema_06_Regresion_MLP/ANN_Practica_Tema6.py" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a></td>
-                        <td><a href="#" onclick="abrirVideo('./Tema_06_Regresion_MLP/grabacion_clase6.url')" class="link-video"><i class="fas fa-video"></i> Video</a></td>
-                        <td><a href="#" onclick="verificarRecurso('./Tema_06_Regresion_MLP/image1.png')" class="link-text">Ver recurso</a></td>
-                    </tr>
-                    <tr>
-                        <td>30 Abr</td>
-                        <td>Tema 7</td>
-                        <td>Evaluación de modelos</td>
-                        <td><a href="./Tema_07_Evaluacion_Modelos/readme.md" class="link-text">Ver Guía</a></td>
-                        <td><a href="./Tema_07_Evaluacion_Modelos/ANN_Practica_Tema7.py" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a></td>
-                        <td><a href="#" onclick="abrirVideo('./Tema_07_Evaluacion_Modelos/grabacion_clase7.url')" class="link-video"><i class="fas fa-video"></i> Video</a></td>
-                        <td><a href="#" onclick="verificarRecurso('./Tema_07_Evaluacion_Modelos/image1.png')" class="link-text">Ver recurso</a></td>
-                    </tr>
-                    <tr>
-                        <td>07 May</td>
-                        <td>Tema 8</td>
-                        <td>Mejora y regularización</td>
-                        <td><a href="./Tema_08_Mejora_Practica/readme.md" class="link-text">Ver Guía</a></td>
-                        <td><a href="./Tema_08_Mejora_Practica/ANN_Practica_Tema8.py" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a></td>
-                        <td><a href="#" onclick="abrirVideo('./Tema_08_Mejora_Practica/grabacion_clase8.url')" class="link-video"><i class="fas fa-video"></i> Video</a></td>
-                        <td><a href="#" onclick="verificarRecurso('./Tema_08_Mejora_Practica/image1.png')" class="link-text">Ver recurso</a></td>
-                    </tr>
-                </tbody>
+                <tbody id="tabla-cuerpo">
+                    </tbody>
             </table>
         </div>
     </main>
 
     <script>
-        function abrirVideo(urlFile) {
-            fetch(urlFile)
-                .then(response => response.text())
-                .then(text => {
-                    const match = text.match(/URL=(.+)/);
-                    if (match) window.open(match[1].trim(), '_blank');
-                    else alert("Error: No se encontró el enlace dentro del archivo .url");
-                })
-                .catch(() => alert("El archivo de video aún no ha sido cargado."));
+        async function cargarTemasDesdeMD() {
+            try {
+                const response = await fetch('temas.md');
+                const texto = await response.text();
+                const lineas = texto.split('\n');
+                
+                const temasProcesados = [];
+                let temaActual = null;
+
+                // Expresión regular para capturar "Guía X - Tema X: Título" y la fecha
+                lineas.forEach(linea => {
+                    if (linea.includes("Guía") && linea.includes("Tema")) {
+                        const partes = linea.split(':');
+                        temaActual = { titulo: partes[1]?.trim() || "Sin título", fecha: "" };
+                    }
+                    if (linea.includes("19 Mar") || linea.includes("26 Mar") || linea.includes("02 Abr") || 
+                        linea.includes("09 Abr") || linea.includes("16 Abr") || linea.includes("23 Abr") || 
+                        linea.includes("30 Abr") || linea.includes("07 May")) {
+                        // Extraemos la fecha (asumiendo formato DD Mes)
+                        const matchFecha = linea.match(/(\d{2}\s\w{3})/);
+                        if (matchFecha && temaActual) {
+                            temaActual.fechaString = matchFecha[0];
+                            // Convertimos a objeto Date para la lógica de hoy (Año 2026 fijo)
+                            temaActual.fechaObj = normalizarFecha(matchFecha[0]);
+                            temasProcesados.push({...temaActual});
+                            temaActual = null;
+                        }
+                    }
+                });
+
+                renderizarTabla(temasProcesados);
+            } catch (error) {
+                console.error("Error al cargar temas.md:", error);
+            }
         }
 
-        function verificarRecurso(imgPath) {
-            const img = new Image();
-            img.onload = () => window.open(imgPath, '_blank');
-            img.onerror = () => alert("No hay recurso extra para este tema.");
-            img.src = imgPath;
+        function normalizarFecha(fStr) {
+            const meses = { "Mar": 2, "Abr": 3, "May": 4 }; // Enero es 0
+            const [dia, mes] = fStr.split(' ');
+            return new Date(2026, meses[mes], parseInt(dia));
         }
+
+        function renderizarTabla(lista) {
+            const hoy = new Date();
+            const cuerpo = document.getElementById('tabla-cuerpo');
+            cuerpo.innerHTML = ""; // Limpiar mensaje de carga
+
+            lista.forEach((t, index) => {
+                const num = (index + 1).toString().padStart(2, '0');
+                const carpeta = `Tema_${num}_${t.titulo.replace(/\s+/g, '_').substring(0, 15)}`;
+                const esVisible = hoy >= t.fechaObj;
+                
+                const fila = document.createElement('tr');
+                if (!esVisible) fila.classList.add('bloqueado');
+
+                fila.innerHTML = `
+                    <td>${t.fechaString}</td>
+                    <td>Tema ${index + 1}</td>
+                    <td>${t.titulo}</td>
+                    <td>${esVisible ? `<a href="./${carpeta}/readme.md" class="link-text">Ver Guía</a>` : 'Próximamente'}</td>
+                    <td>${esVisible ? `<a href="./${carpeta}/ANN_Practica.txt" target="_blank" class="link-code"><i class="fas fa-code"></i> Código</a>` : '-'}</td>
+                    <td>${esVisible ? `<a href="#" onclick="abrirVideo('./${carpeta}/grabacion_clase.url')" class="link-video"><i class="fas fa-video"></i> Video</a>` : '-'}</td>
+                    <td>${esVisible ? `<a href="#" onclick="verificarRecurso('./${carpeta}/image1.png')" class="link-text">Ver recurso</a>` : '-'}</td>
+                `;
+                cuerpo.appendChild(fila);
+            });
+        }
+
+        // Las funciones abrirVideo y verificarRecurso se mantienen igual...
+        function abrirVideo(path) {
+            fetch(path).then(r => r.text()).then(t => {
+                const url = t.match(/URL=(.+)/);
+                if (url) window.open(url[1].trim(), '_blank');
+            }).catch(() => alert("Video no disponible"));
+        }
+
+        function verificarRecurso(path) {
+            const img = new Image();
+            img.onload = () => window.open(path, '_blank');
+            img.onerror = () => alert("No hay recurso extra.");
+            img.src = path;
+        }
+
+        window.onload = cargarTemasDesdeMD;
     </script>
 </body>
 </html>
