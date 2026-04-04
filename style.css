@@ -1,26 +1,24 @@
 :root {
     --primary: #8E1B3A; /* Vinotinto UCSG */
     --secondary: #2D58A0; /* Azul TEC */
-    --text: #333;
-    --light-bg: #f8f9fa;
+    --gray: #666;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
-    color: var(--text);
-    background-color: #fff;
+    color: #333;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 20px;
 }
 
-/* Header Bajo y Simplificado */
+/* Header */
 header {
-    padding: 12px 0;
+    padding: 15px 0;
     border-bottom: 3px solid var(--primary);
     background: #fff;
 }
@@ -37,30 +35,12 @@ header {
     gap: 15px;
 }
 
-.logo {
-    height: 55px;
-    width: auto;
-}
+.logo { height: 55px; }
 
-.header-text h1 {
-    margin: 0;
-    color: var(--primary);
-    font-size: 1.4rem;
-}
+.header-text h1 { margin: 0; color: var(--primary); font-size: 1.4rem; }
+.header-text p { margin: 0; color: var(--secondary); font-size: 0.85rem; font-weight: bold; }
+.teacher { font-size: 0.75rem; color: var(--gray); }
 
-.header-text p {
-    margin: 0;
-    color: var(--secondary);
-    font-size: 0.85rem;
-    font-weight: bold;
-}
-
-.teacher {
-    font-size: 0.75rem;
-    color: #666;
-}
-
-/* Recursos del encabezado */
 .header-links {
     display: flex;
     gap: 25px;
@@ -68,30 +48,17 @@ header {
 
 .nav-item {
     text-decoration: none;
-    color: var(--text);
+    color: #333;
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: 0.2s;
 }
 
-.nav-item:hover {
-    opacity: 0.7;
-}
+.nav-item i { font-size: 1.3rem; color: var(--primary); }
+.nav-item strong { font-size: 0.85rem; }
 
-.nav-item i {
-    font-size: 1.4rem;
-    color: var(--primary);
-}
-
-.nav-item strong {
-    font-size: 0.85rem;
-}
-
-/* Estilo de la Tabla */
-.table-container {
-    margin-top: 30px;
-}
+/* Tabla */
+.table-container { margin-top: 30px; overflow-x: auto; }
 
 table {
     width: 100%;
@@ -102,47 +69,35 @@ table {
 thead th {
     background-color: var(--secondary);
     color: white;
+    padding: 12px;
     text-align: left;
-    padding: 12px 15px;
-    font-weight: 600;
+    text-transform: uppercase;
 }
 
 tbody td {
-    padding: 12px 15px;
+    padding: 12px;
     border-bottom: 1px solid #eee;
 }
 
-/* Estado bloqueado para fechas futuras */
+/* Fila deshabilitada */
 .bloqueado {
-    opacity: 0.5;
-    background-color: #fafafa;
-    pointer-events: none; /* Desactiva clics */
+    background-color: #f9f9f9;
+    color: #bbb;
 }
 
-/* Enlaces dentro de la tabla */
-.link-text {
+.bloqueado a {
+    pointer-events: none;
+    color: #bbb !important;
+}
+
+/* Enlaces */
+.link-text, .link-code, .link-video {
+    text-decoration: none;
     color: var(--secondary);
-    text-decoration: underline;
+    font-weight: bold;
     cursor: pointer;
 }
 
-.link-code {
-    color: var(--secondary);
-    font-weight: bold;
-    text-decoration: none;
-}
+.link-text:hover { text-decoration: underline; }
 
-.link-video {
-    color: var(--secondary);
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.link-video i {
-    color: var(--primary);
-}
-
-@media (max-width: 850px) {
-    .header-content { flex-direction: column; text-align: center; gap: 15px; }
-}
+.link-video i { color: var(--primary); }
