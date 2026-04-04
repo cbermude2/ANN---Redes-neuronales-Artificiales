@@ -1,103 +1,28 @@
 :root {
-    --primary: #8E1B3A; /* Vinotinto UCSG */
-    --secondary: #2D58A0; /* Azul TEC */
-    --gray: #666;
+    --primary: #8E1B3A;
+    --secondary: #2D58A0;
 }
 
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    margin: 0;
-    color: #333;
-}
+body { font-family: 'Segoe UI', sans-serif; margin: 0; color: #333; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Header */
-header {
-    padding: 15px 0;
-    border-bottom: 3px solid var(--primary);
-    background: #fff;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.brand-section {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
+header { padding: 15px 0; border-bottom: 3px solid var(--primary); background: #fff; }
+.header-content { display: flex; justify-content: space-between; align-items: center; }
+.brand-section { display: flex; align-items: center; gap: 15px; }
 .logo { height: 55px; }
 
 .header-text h1 { margin: 0; color: var(--primary); font-size: 1.4rem; }
 .header-text p { margin: 0; color: var(--secondary); font-size: 0.85rem; font-weight: bold; }
-.teacher { font-size: 0.75rem; color: var(--gray); }
+.teacher { font-size: 0.75rem; color: #666; }
 
-.header-links {
-    display: flex;
-    gap: 25px;
-}
+.header-links { display: flex; gap: 20px; }
+.nav-item { text-decoration: none; color: #333; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+.nav-item i { font-size: 1.2rem; color: var(--primary); }
 
-.nav-item {
-    text-decoration: none;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.85rem; }
+thead th { background: var(--secondary); color: white; padding: 12px; text-align: left; }
+tbody td { padding: 12px; border-bottom: 1px solid #eee; }
 
-.nav-item i { font-size: 1.3rem; color: var(--primary); }
-.nav-item strong { font-size: 0.85rem; }
-
-/* Tabla */
-.table-container { margin-top: 30px; overflow-x: auto; }
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.85rem;
-}
-
-thead th {
-    background-color: var(--secondary);
-    color: white;
-    padding: 12px;
-    text-align: left;
-    text-transform: uppercase;
-}
-
-tbody td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-}
-
-/* Fila deshabilitada */
-.bloqueado {
-    background-color: #f9f9f9;
-    color: #bbb;
-}
-
-.bloqueado a {
-    pointer-events: none;
-    color: #bbb !important;
-}
-
-/* Enlaces */
-.link-text, .link-code, .link-video {
-    text-decoration: none;
-    color: var(--secondary);
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.link-text:hover { text-decoration: underline; }
-
+.bloqueado { opacity: 0.5; background: #f9f9f9; pointer-events: none; }
+.link-text, .link-code, .link-video { color: var(--secondary); text-decoration: none; font-weight: bold; }
 .link-video i { color: var(--primary); }
