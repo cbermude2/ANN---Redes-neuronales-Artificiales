@@ -1,0 +1,19 @@
+'''
+################################
+Desarrollo del caso
+################################
+
+Función Sigmoide: Esta función comprime el valor en un rango de (0, 1), siendo muy útil para interpretaciones de probabilidad.
+𝑓(𝑧)=1/(1+𝑒^(−𝑧) )=1/(1+𝑒^(−1.01) )=0.733=73.3%
+
+Función Tanh (Tangente Hiperbólica): Devuelve un valor en el rango (-1, 1) y está centrada en cero, lo que suele ser mejor para el entrenamiento que la sigmoide
+𝑓(𝑧)=tanh⁡(𝑧)=tanh⁡(1.01)=0.766=76.6%
+
+Función ReLU: Es computacionalmente eficiente y devuelve 0 si el valor es negativo o el mismo valor si es positivo (Rango[0,∞)
+𝐶𝑜𝑚𝑜 𝑧=1.01>0 →𝑓(𝑧)=1.01
+Este estímulo es positivo y relevante, es decir la neurona está "completamente activa“, entonces da paso íntegramente hacia adelante"
+
+Verificar las curvas de las funciones con GEOGEBRA
+𝑓(x)=1/(1+𝑒^(−x))
+𝑓(x)=tanh⁡(x)
+https://www.geogebra.org/calculator
