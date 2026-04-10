@@ -3,26 +3,13 @@
 Tema 4: Herramientas y entornos para redes neuronales
 ## Pipeline mínimo y modelo MLP (Prácticas 1 y 2)
 *******************************************************
-
-
----
-
-## 📌 Descripción
-
 Este repositorio contiene dos prácticas fundamentales para la construcción de modelos de **redes neuronales artificiales**, enfocadas en:
 
 * Preparación de datos (pipeline mínimo)
 * Implementación de un modelo MLP
 * Entrenamiento y evaluación
 
-Las prácticas están diseñadas para estudiantes con conocimientos básicos de programación en Python.
-
----
-
 ## 🎯 Objetivos de aprendizaje
-
-Al finalizar estas prácticas, el estudiante será capaz de:
-
 * Preparar datos para modelos de Machine Learning
 * Aplicar buenas prácticas (train/test split, normalización)
 * Construir un modelo de red neuronal simple (MLP)
@@ -31,8 +18,6 @@ Al finalizar estas prácticas, el estudiante será capaz de:
 ---
 
 ## 🧪 Práctica 1: Pipeline mínimo de datos
-
-### 📋 Descripción
 
 En esta práctica se construye un pipeline básico de procesamiento de datos utilizando el dataset **Iris**.
 
@@ -53,8 +38,6 @@ En esta práctica se construye un pipeline básico de procesamiento de datos uti
 
 ## 🧪 Práctica 2: Modelo MLP y entrenamiento
 
-### 📋 Descripción
-
 En esta práctica se implementa un modelo de red neuronal tipo **Perceptrón Multicapa (MLP)**.
 
 ### 🔧 Actividades
@@ -62,7 +45,6 @@ En esta práctica se implementa un modelo de red neuronal tipo **Perceptrón Mul
 * Aplicar one-hot encoding a las etiquetas
 * Definir modelo con Keras (TensorFlow)
 * Configurar:
-
   * Función de pérdida
   * Optimizador
   * Métrica
