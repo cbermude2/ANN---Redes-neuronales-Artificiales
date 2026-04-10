@@ -1,6 +1,6 @@
-# ============================================
+# ============================================================
 # PRÁCTICA 1: PIPELINE MÍNIMO
-# ============================================
+# ============================================================
 
 # --------------------------------------------
 # 1. IMPORTAR LIBRERÍAS
@@ -77,4 +77,119 @@ print(np.mean(X_train, axis=0))
 
 print("\nDesviación estándar (debe ser cercana a 1):")
 print(np.std(X_train, axis=0))
+
+
+# ============================================================
+# PRÁCTICA 2: MODELO + ENTRENAMIENTO + EVALUACIÓN
+# ============================================================
+
+# --------------------------------------------
+# 1. IMPORTAR LIBRERÍAS
+# --------------------------------------------
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.utils import to_categorical
+
+# --------------------------------------------
+# 2. (IMPORTANTE) ASEGURAR QUE EXISTEN DATOS
+# --------------------------------------------
+# Este código asume que ya ejecutaste la PRÁCTICA 1
+# y tienes:
+# X_train, X_test, y_train, y_test
+
+# Si NO los tienes, descomenta este bloque:
+
+"""
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+"""
+
+# --------------------------------------------
+# 3. CONVERTIR ETIQUETAS A ONE-HOT
+# --------------------------------------------
+# Ejemplo: 1 → [0,1,0]
+y_train_cat = to_categorical(y_train)
+y_test_cat = to_categorical(y_test)
+
+print("Ejemplo etiqueta original:", y_train[0])
+print("Ejemplo one-hot:", y_train_cat[0])
+
+# --------------------------------------------
+# 4. CREAR MODELO MLP MÍNIMO
+# --------------------------------------------
+model = Sequential()
+
+# Capa oculta (16 neuronas)
+model.add(Dense(16, activation='relu', input_shape=(4,)))
+
+# Capa de salida (3 clases)
+model.add(Dense(3, activation='softmax'))
+
+# Mostrar estructura
+print("\n=== ESTRUCTURA DEL MODELO ===")
+model.summary()
+
+# --------------------------------------------
+# 5. COMPILAR MODELO
+# --------------------------------------------
+model.compile(
+    optimizer='adam',                 # optimizador
+    loss='categorical_crossentropy',  # función de pérdida
+    metrics=['accuracy']              # métrica
+)
+
+# --------------------------------------------
+# 6. ENTRENAR MODELO
+# --------------------------------------------
+print("\n=== ENTRENANDO MODELO ===")
+
+history = model.fit(
+    X_train, y_train_cat,
+    epochs=50,            # número de iteraciones
+    batch_size=8,         # tamaño de lote
+    validation_split=0.2, # 20% validación
+    verbose=1
+)
+
+# --------------------------------------------
+# 7. EVALUACIÓN FINAL
+# --------------------------------------------
+print("\n=== EVALUACIÓN EN TEST ===")
+
+loss, accuracy = model.evaluate(X_test, y_test_cat)
+
+print("Loss:", loss)
+print("Accuracy:", accuracy)
+
+# --------------------------------------------
+# 8. PREDICCIONES
+# --------------------------------------------
+print("\n=== PREDICCIONES ===")
+
+predicciones = model.predict(X_test)
+
+# Mostrar ejemplo
+print("\nProbabilidades (primer dato):")
+print(predicciones[0])
+
+print("\nClase predicha:")
+print(np.argmax(predicciones[0]))
+
+print("Clase real:")
+print(y_test[0])
 
