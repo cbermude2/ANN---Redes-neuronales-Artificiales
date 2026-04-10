@@ -64,7 +64,7 @@ header {
     color: var(--text-light);
 }
 
-/* Enlaces de Cabecera (Iconos a la derecha) */
+/* Enlaces de Cabecera */
 .header-links {
     display: flex;
     flex-direction: column;
@@ -76,7 +76,6 @@ header {
     color: var(--text-dark);
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     gap: 10px;
     font-size: 0.9rem;
     transition: 0.3s;
@@ -97,7 +96,7 @@ header {
     font-weight: 700;
 }
 
-/* --- TABLA DE TEMAS --- */
+/* --- TABLA --- */
 .table-container {
     margin-top: 40px;
     background: var(--white);
@@ -118,7 +117,6 @@ thead th {
     text-align: left;
     padding: 15px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 tbody tr {
@@ -135,60 +133,108 @@ tbody td {
     vertical-align: middle;
 }
 
-/* Estilo para temas bloqueados (fecha futura) */
+/* Bloqueado */
 .bloqueado {
     opacity: 0.5;
     background-color: var(--bg-gray);
-    pointer-events: none; /* Deshabilita clics en los enlaces */
+    pointer-events: none;
 }
 
-.bloqueado td {
-    color: #999;
-}
-
-/* --- ENLACES Y BOTONES --- */
-.link-text {
-    color: var(--secondary);
-    text-decoration: underline;
-    font-weight: 500;
-}
-
-.link-code {
-    color: var(--secondary);
-    font-weight: bold;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
+/* --- LINKS --- */
+.link-text,
+.link-code,
 .link-video {
     color: var(--secondary);
-    font-weight: bold;
+    font-weight: 500;
     text-decoration: none;
+}
+
+.link-code,
+.link-video {
     display: flex;
     align-items: center;
     gap: 5px;
-    cursor: pointer;
 }
 
 .link-video i {
     color: var(--primary);
 }
 
-/* Responsividad */
-@media (max-width: 900px) {
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+/* TABLETS */
+@media (max-width: 992px) {
+
     .header-content {
         flex-direction: column;
         text-align: center;
         gap: 20px;
     }
-    
+
+    .brand-section {
+        justify-content: center;
+    }
+
+    .header-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
     .nav-item {
         justify-content: center;
     }
-    
+
     table {
+        font-size: 0.85rem;
+    }
+}
+
+/* CELULARES */
+@media (max-width: 600px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    .logo {
+        height: 45px;
+    }
+
+    .header-text h1 {
+        font-size: 1.2rem;
+    }
+
+    .header-text p {
         font-size: 0.8rem;
     }
+
+    .header-links {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .nav-item {
+        font-size: 0.8rem;
+    }
+
+    /* TABLA SCROLL */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        font-size: 0.8rem;
+    }
+
+    thead th,
+    tbody td {
+        padding: 10px;
+    }
+
 }
