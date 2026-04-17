@@ -1,0 +1,131 @@
+#------------------------------------------------
+#1. CARGAR DATOS
+#------------------------------------------------
+from sklearn.datasets import load_iris #datos de flores
+
+# Cargar dataset
+data = load_iris()
+X = data.data
+y = data.target
+
+#🔎 PRUEBA
+#print("Shape de X:", X.shape)
+#print("Número de clases:", len(set(y)))
+
+#------------------------------------------------
+#2. PREPARAR DATOS (Train/Test + One-Hot)
+#------------------------------------------------
+#Transforma los datos crudos a un formato que entienda la ANN
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.utils import to_categorical
+
+#2.1 División de datos (split): test 20% | train 80%
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+# 🔎 PRUEBA
+#print("Antes de categorical")
+#print("y_train", y_train)
+#print("y_test",y_test)
+
+
+#2.2 One-hot encoding (codificación de etiquetas)
+y_train = to_categorical(y_train)
+y_test = to_categorical(y_test)
+# 🔎 PRUEBA
+#print("Despúes de categorical")
+#print("y_train",y_train)
+#print("y_test",y_test)
+
+
+# 🔎 PRUEBA
+#print("Train/Test:", X_train.shape, X_test.shape)
+#print("Formato Train/Test:", y_train.shape, y_test.shape)
+
+#------------------------------------------------
+#3. MODELO + ENTRENAMIENTO
+#------------------------------------------------
+#3.1. Definir Modelo
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+model = Sequential([
+    Dense(8, activation='relu', input_shape=(4,)),
+    Dense(3, activation='softmax')
+])
+
+# 🔎 PRUEBA
+model.summary()
+
+#3.2. Compilar modelo
+model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# 🔎 PRUEBA
+#print("Función de pérdida:", model.loss)
+
+#3.3. Entrenar Modelo
+history = model.fit(
+    X_train, y_train,
+    epochs=20,
+    validation_split=0.2,
+    verbose=1
+)
+
+# 🔎 PRUEBA
+#print("Historial:", history.history.keys())
+
+#------------------------------------------------
+#4. DESEMPEÑO
+#------------------------------------------------
+#4.1. Evaluiar Modelo
+loss, acc = model.evaluate(X_test, y_test)
+
+# 🔎 PRUEBA
+#print("Accuracy:", acc)
+
+#4.2. Matriz de confusión
+from sklearn.metrics import confusion_matrix
+import numpy as np
+
+#4.3. Predicciones
+y_pred = model.predict(X_test)
+y_pred_classes = np.argmax(y_pred, axis=1)
+y_true = np.argmax(y_test, axis=1)
+
+#4.4. Matriz
+cm = confusion_matrix(y_true, y_pred_classes)
+
+# 🔎 PRUEBA
+print("Matriz de confusión:\n", cm)
+
+#------------------------------------------------
+#5. AJUSTE
+#------------------------------------------------
+#5.1. Detectar  errores
+errors = y_pred_classes != y_true
+
+# 🔎 PRUEBA
+#print("Número de errores:", sum(errors))
+
+#5.2. Mejorar Modelo con mayor capacidad
+model2 = Sequential([
+    Dense(16, activation='relu', input_shape=(4,)),
+    Dense(8, activation='relu'),
+    Dense(3, activation='softmax')
+])
+
+model2.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+model2.fit(X_train, y_train, epochs=30, verbose=0)
+
+#5.3. Evaluación
+loss2, acc2 = model2.evaluate(X_test, y_test)
+ 
+print("Accuracy | loss -  modelo original:", acc, loss)
+print("Accuracy | loss -  modelo mejorado:", acc2, loss2)
