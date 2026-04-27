@@ -1,3 +1,15 @@
+'''
+##############################################
+#Estructura del Código
+#Caso: PREDICCIÓN DEL PRECIO DE BIENES RAICES
+##############################################
+#FASE 1: GENERAR DATOS SIMPLES
+#FASE 2: IMPLEMENTAR MODELO Y ENTRENARLO
+#FASE 3: EVALUACIÓN
+#FASE 4:  ANÁLISIS DE ERRORES POR RANGOS
+#FASE 5:  MEJORAR MODELO
+'''
+
 # ============================================
 # FASE 1: GENERAR DATOS SIMPLES
 # ============================================
