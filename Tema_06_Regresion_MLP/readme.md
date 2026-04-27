@@ -1,1 +1,130 @@
+# ============================================
+# FASE 1: GENERAR DATOS SIMPLES
+# ============================================
 
+import numpy as np
+
+# Simulación de datos
+np.random.seed(42)
+
+n = 200
+
+# Generación de aleatorios para las variables
+m2 = np.random.randint(50, 200, n)
+habitaciones = np.random.randint(1, 5, n)
+antiguedad = np.random.randint(0, 30, n)
+
+
+# Modelo Precio (función simulada)
+precio = (m2 * 300) + (habitaciones * 10000) - (antiguedad * 500) + np.random.normal(0, 10000, n)
+
+# Dataset
+X = np.column_stack((m2, habitaciones, antiguedad))
+y = precio
+
+print("Shape X:", X.shape)
+print("Ejemplo:", X[:5])
+
+
+# DIVIDIR + ESTANDARIZACIÓN
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# División
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Escalado
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+print("Train:", X_train.shape)
+
+# ============================================
+# FASE 2: MODELO
+# ============================================
+
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+model = Sequential([
+    Dense(16, activation='relu', input_shape=(3,)),
+    Dense(1)  # salida lineal
+])
+
+model.summary()
+
+# Compilar + Entrenar
+
+model.compile(
+    optimizer='adam',
+    loss='mse',
+    metrics=['mae']
+)
+
+history = model.fit(
+    X_train, y_train,
+    epochs=30,
+    validation_split=0.2,
+    verbose=1
+)
+
+
+# ============================================
+# FASE 3: EVALUACIÓN
+# ============================================
+
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+
+# Predicciones
+y_pred = model.predict(X_test)
+
+# Métricas
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+
+print("MAE:", mae)
+print("MSE:", mse)
+print("RMSE:", rmse)
+
+
+
+# ============================================
+# FASE 4: ANÁLISIS DE ERRORES POR RANGOS
+# ============================================
+
+# Errores
+errores = np.abs(y_test - y_pred.flatten())
+
+# Segmentación simple
+bajo = errores[y_test < 80000]
+medio = errores[(y_test >= 80000) & (y_test < 150000)]
+alto = errores[y_test >= 150000]
+
+print("Error bajo:", np.mean(bajo))
+print("Error medio:", np.mean(medio))
+print("Error alto:", np.mean(alto))
+
+
+# ============================================
+# FASE 5: MEJORAR MODELO
+# ============================================
+model2 = Sequential([
+    Dense(32, activation='relu', input_shape=(3,)),
+    Dense(16, activation='relu'),
+    Dense(1)
+])
+
+model2.compile(optimizer='adam', loss='mse', metrics=['mae'])
+
+model2.fit(X_train, y_train, epochs=50, verbose=0)
+
+y_pred2 = model2.predict(X_test)
+
+mae2 = mean_absolute_error(y_test, y_pred2)
+
+print("MAE original:", mae)
+print("MAE mejorado:", mae2)
