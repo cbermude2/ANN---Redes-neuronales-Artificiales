@@ -1,142 +1,197 @@
-'''
-##############################################
-#Estructura del Código
-#Caso: PREDICCIÓN DEL PRECIO DE BIENES RAICES
-##############################################
-#FASE 1: GENERAR DATOS SIMPLES
-#FASE 2: IMPLEMENTAR MODELO Y ENTRENARLO
-#FASE 3: EVALUACIÓN
-#FASE 4:  ANÁLISIS DE ERRORES POR RANGOS
-#FASE 5:  MEJORAR MODELO
-'''
+# 🧠 Predicción de Precio de Bienes Raíces con Redes Neuronales (MLP)
 
-# ============================================
-# FASE 1: GENERAR DATOS SIMPLES
-# ============================================
+---
 
-import numpy as np
+## 📌 Descripción
 
-# Simulación de datos
-np.random.seed(42)
+Este proyecto implementa un flujo completo de aprendizaje automático utilizando redes neuronales artificiales para predecir el **precio de viviendas** a partir de variables simples.
 
-n = 200
+El desarrollo está organizado por **fases**, lo que permite comprender paso a paso el proceso:
 
-# Generación de aleatorios para las variables
-m2 = np.random.randint(50, 200, n)
-habitaciones = np.random.randint(1, 5, n)
-antiguedad = np.random.randint(0, 30, n)
+```text
+Datos → Modelo → Evaluación → Análisis → Mejora
+```
 
+---
 
-# Modelo Precio (función simulada)
-precio = (m2 * 300) + (habitaciones * 10000) - (antiguedad * 500) + np.random.normal(0, 10000, n)
+## 🎯 Objetivos de aprendizaje
 
-# Dataset
-X = np.column_stack((m2, habitaciones, antiguedad))
-y = precio
+* Generar y trabajar con datos simulados
+* Preparar datos para redes neuronales
+* Implementar un modelo MLP para regresión
+* Evaluar el desempeño del modelo
+* Analizar errores por rangos
+* Mejorar el modelo y comparar resultados
 
-print("Shape X:", X.shape)
-print("Ejemplo:", X[:5])
+---
 
+## 📊 Variables del modelo
 
-# DIVIDIR + ESTANDARIZACIÓN
+El precio se predice en función de:
 
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+* 📐 **m2** → tamaño de la vivienda
+* 🛏 **habitaciones** → número de habitaciones
+* 🏚 **antigüedad** → años de construcción
 
-# División
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+---
 
-# Escalado
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+## ⚙️ Requisitos
 
-print("Train:", X_train.shape)
+Instalar dependencias:
 
-# ============================================
-# FASE 2: MODELO
-# ============================================
+```bash
+pip install numpy scikit-learn tensorflow
+```
 
-import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+> ✅ Recomendado: Python 3.10 o 3.11
 
-model = Sequential([
-    Dense(16, activation='relu', input_shape=(3,)),
-    Dense(1)  # salida lineal
-])
+---
 
-model.summary()
+## 🚀 Ejecución
 
-# Compilar + Entrenar
+```bash
+python main.py
+```
 
-model.compile(
-    optimizer='adam',
-    loss='mse',
-    metrics=['mae']
-)
+O ejecutar en Google Colab.
 
-history = model.fit(
-    X_train, y_train,
-    epochs=30,
-    validation_split=0.2,
-    verbose=1
-)
+---
 
+# 🧪 Estructura del proyecto
 
-# ============================================
-# FASE 3: EVALUACIÓN
-# ============================================
+---
 
-from sklearn.metrics import mean_absolute_error, mean_squared_error
+## 🔹 FASE 1: Generación de datos
 
-# Predicciones
-y_pred = model.predict(X_test)
+Se simulan datos de viviendas mediante una función:
 
-# Métricas
-mae = mean_absolute_error(y_test, y_pred)
-mse = mean_squared_error(y_test, y_pred)
-rmse = np.sqrt(mse)
+```text
+precio = (m2 * 300) + (habitaciones * 10000) - (antigüedad * 500) + ruido
+```
 
-print("MAE:", mae)
-print("MSE:", mse)
-print("RMSE:", rmse)
+✔ Incluye ruido para simular escenarios reales
+✔ Se construye el dataset (X, y)
 
+---
 
+## 🔹 FASE 2: Modelo y entrenamiento
 
-# ============================================
-# FASE 4: ANÁLISIS DE ERRORES POR RANGOS
-# ============================================
+Se implementa un modelo MLP:
 
-# Errores
-errores = np.abs(y_test - y_pred.flatten())
+* Capa oculta: 16 neuronas (ReLU)
+* Capa de salida: 1 neurona (regresión)
 
-# Segmentación simple
-bajo = errores[y_test < 80000]
-medio = errores[(y_test >= 80000) & (y_test < 150000)]
-alto = errores[y_test >= 150000]
+Configuración:
 
-print("Error bajo:", np.mean(bajo))
-print("Error medio:", np.mean(medio))
-print("Error alto:", np.mean(alto))
+* Optimizador: Adam
+* Función de pérdida: MSE
+* Métrica: MAE
 
+---
 
-# ============================================
-# FASE 5: MEJORAR MODELO
-# ============================================
-model2 = Sequential([
-    Dense(32, activation='relu', input_shape=(3,)),
-    Dense(16, activation='relu'),
-    Dense(1)
-])
+## 🔹 FASE 3: Evaluación
 
-model2.compile(optimizer='adam', loss='mse', metrics=['mae'])
+Se calculan las métricas:
 
-model2.fit(X_train, y_train, epochs=50, verbose=0)
+* **MAE** → error promedio
+* **MSE** → error cuadrático
+* **RMSE** → error en escala real
 
-y_pred2 = model2.predict(X_test)
+---
 
-mae2 = mean_absolute_error(y_test, y_pred2)
+## 🔹 FASE 4: Análisis de errores
 
-print("MAE original:", mae)
-print("MAE mejorado:", mae2)
+Se analizan errores por rangos de precio:
+
+* Bajo (< 80,000)
+* Medio (80,000 – 150,000)
+* Alto (> 150,000)
+
+✔ Permite identificar dónde falla el modelo
+
+---
+
+## 🔹 FASE 5: Mejora del modelo
+
+Se crea un modelo más complejo:
+
+* Más neuronas
+* Más capas
+* Más épocas
+
+Se compara el desempeño:
+
+```text
+MAE original vs MAE mejorado
+```
+
+---
+
+# 📈 Resultados esperados
+
+* Modelo funcional de regresión
+* Cálculo correcto de métricas
+* Identificación de errores por rango
+* Comparación entre modelos
+
+---
+
+# 🧠 Interpretación de resultados
+
+* Un **MAE menor** indica mejor desempeño
+* Si la mejora es muy pequeña → no es significativa
+* RMSE alto indica presencia de errores grandes
+
+---
+
+# ⚠️ Buenas prácticas
+
+* No mezclar datos de entrenamiento y prueba
+* Escalar los datos correctamente
+* Analizar errores, no solo métricas
+* Comparar modelos con criterio
+
+---
+
+# ❌ Errores comunes
+
+* No normalizar datos
+* Interpretar mal las métricas
+* Creer que un modelo más complejo siempre es mejor
+* Ignorar el análisis de errores
+
+---
+
+# 🎓 Actividad sugerida
+
+1. Ejecutar el código
+2. Registrar métricas (MAE, MSE, RMSE)
+3. Analizar errores por rangos
+4. Comparar modelos
+5. Proponer mejoras
+
+---
+
+# 👨‍🏫 Uso académico
+
+Este proyecto está diseñado para:
+
+* Clases de Redes Neuronales
+* Introducción a regresión con MLP
+* Laboratorios prácticos guiados
+
+---
+
+# 📌 Autor
+
+Docente: *[Tu nombre]*
+Asignatura: Aplicación de Redes Neuronales
+Institución: UCSG TEC
+
+---
+
+# 📄 Licencia
+
+Uso académico.
+
+---
