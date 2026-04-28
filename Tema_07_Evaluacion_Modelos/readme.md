@@ -156,11 +156,28 @@ O ejecutar en Google Colab.
 
 ## 🚀 Posibles mejoras
 
-Para resolver el problema:
+Intentar para resolver el problema:
 
-* Ajustar pesos de clase (`class_weight`)
 * Balancear el dataset (oversampling / undersampling)
+* Ajustar pesos de clase (`class_weight`)
 * Ajustar el umbral de decisión
 * Probar otros modelos
+
+
+# 👨‍🏫 Uso académico
+
+Docente: Christian Bermúdez G.
+Asignatura: Aplicación de Redes Neuronales
+Institución: UCSG TEC
+
+---
+
+# 📄 Licencia
+
+Uso académico.
+
+---
+
+
 
 ---
