@@ -1,0 +1,96 @@
+# ============================================
+# FASE 1: GENERAR DATASET DESBALANCEADO
+# ============================================
+
+import numpy as np
+
+#1000 TRANSACCIONES, 20 FRAUDES  
+np.random.seed(42)  #Fijar semilla para randoms
+n = 1000
+
+# Variables simuladas
+X = np.random.rand(n, 5) #1000 registros x 5 variables: valores entre 0 y  1
+# 2% fraude
+y = np.zeros(n)
+y[:300] = 1  # fraude
+
+# Reordenar aleatoriamente
+idx = np.random.permutation(n) #crea el orden aleatorio
+X = X[idx]  #Aplica ese orden en X
+y = y[idx]  #Aplica ese orden en y
+#print("X:",X)
+#print("y:",y)
+print("Fraudes ORIGINAL:", sum(y))
+
+# División 20% test, 80%  enmtrenamiento
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+print("Fraudes train1:", sum(y_train))
+print("Fraudes test1:", sum(y_test))
+
+#Mantiene proporción de fraude en train y test
+X_train2, X_test2, y_train2, y_test2 = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+print("Fraudes train2:", sum(y_train2))
+print("Fraudes test2:", sum(y_test2))
+
+
+# ============================================
+# FASE 2: MODELO MLP
+# Entrada (5 variables) → [5 neuronas] → Salida
+# ============================================
+from sklearn.neural_network import MLPClassifier
+
+# Compilar + Entrenar
+model1 = MLPClassifier(
+    hidden_layer_sizes=(5,), #1 capa oculta con 5 neuronas
+    max_iter=300) #máximo de iteraciones para entrenamiento
+model1.fit(X_train, y_train)  #Modelo aprende
+y_pred1 = model1.predict(X_test) # modelo predice
+
+# ============================================
+# FASE 3: EVALUACIÓN DE MÉTRICAS
+# ============================================
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+
+acc1 = accuracy_score(y_test, y_pred1)
+prec1 = precision_score(y_test, y_pred1)
+rec1 = recall_score(y_test, y_pred1)
+f11 = f1_score(y_test, y_pred1)
+
+#Imprimir métricas
+print("Accuracy:", acc1)
+print("Precision:", prec1)
+print("Recall:", rec1)
+print("F1:", f11)
+
+#Matriz de confusión
+cm1 = confusion_matrix(y_test, y_pred1)
+print(cm1)
+
+# ============================================
+# FASE 4: MODELO 2
+# ============================================
+
+# Compilar + Entrenar modelo 2
+model2 = MLPClassifier(hidden_layer_sizes=(20,10), max_iter=500)
+model2.fit(X_train, y_train)
+y_pred2 = model2.predict(X_test)
+
+#Evaluar métricas de modelo 2
+acc2 = accuracy_score(y_test, y_pred2)
+prec2 = precision_score(y_test, y_pred2)
+rec2 = recall_score(y_test, y_pred2)
+f12 = f1_score(y_test, y_pred2)
+
+#Tabla comparativa
+import pandas as pd
+tabla = pd.DataFrame({
+    "Modelo 1": [acc1, prec1, rec1, f11],
+    "Modelo 2": [acc2, prec2, rec2, f12]
+}, index=["Accuracy", "Precision", "Recall", "F1"])
+
+print("\nCOMPARACIÓN DE MODELOS")
+print(tabla)
+'''
+
+
