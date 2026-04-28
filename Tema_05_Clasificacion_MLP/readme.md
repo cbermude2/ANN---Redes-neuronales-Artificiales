@@ -233,17 +233,19 @@ Dense(8 → 32)
 epochs=20 → 50
 ```
 
-👉 Analizar cómo cambia el accuracy
-
----
 
 # 👨‍🏫 Uso académico
 
-Este código está diseñado para:
+Docente: Christian Bermúdez G.
+Asignatura: Aplicación de Redes Neuronales
+Institución: UCSG TEC
 
-* Clases prácticas de IA
-* Introducción a redes neuronales
-* Laboratorios guiados
+---
 
+# 📄 Licencia
 
+Uso académico.
 
+---
+---
+* Ajustar pesos de clase (`class_weight`)
