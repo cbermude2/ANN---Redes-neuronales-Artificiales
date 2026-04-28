@@ -174,17 +174,7 @@ MAE original vs MAE mejorado
 
 # 👨‍🏫 Uso académico
 
-Este proyecto está diseñado para:
-
-* Clases de Redes Neuronales
-* Introducción a regresión con MLP
-* Laboratorios prácticos guiados
-
----
-
-# 📌 Autor
-
-Docente: *[Tu nombre]*
+Docente: Christian Bermúdez G.
 Asignatura: Aplicación de Redes Neuronales
 Institución: UCSG TEC
 
