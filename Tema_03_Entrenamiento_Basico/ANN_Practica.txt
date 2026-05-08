@@ -1,6 +1,6 @@
 '''
 # ============================================================
-# PRÁCTICA 3: ENTRENAMIENTO
+# PRÁCTICA 3: CLASIFICACIÓN DE PROMEDIOS APROBADO / REPROBADO
 # ============================================================
 Fase 1: Creación del Dataset: 100 filas con 5 variables de entrada.
 Fase 2: Persistencia de Datos: respaldo del Dataset en "datos.csv"
