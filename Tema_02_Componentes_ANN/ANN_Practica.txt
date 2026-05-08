@@ -1,8 +1,7 @@
 '''
-################################
-Estructura del Código
-Caso: Clasificación de correo (spam / no spam)
-################################
+# ============================================================
+# PRÁCTICA 2: Clasificación de correo (spam / no spam)
+# ============================================================
 🧩 FASE 1: Importación y definición de datos
 🧮 FASE 2: Función lineal (Z = W·x + b)
 🔁 FASE 3: Forward propagation (paso hacia adelante)
