@@ -1,0 +1,169 @@
+# ============================================
+# FASE 1: GENERACIÓN Y PREPARACIÓN DE DATOS
+# ============================================
+
+import numpy as np
+import pandas as pd
+
+np.random.seed(42)
+
+n = 1000
+
+# Variables académicas
+promedio = np.random.uniform(4, 10, n)
+asistencia = np.random.uniform(40, 100, n)
+reprobadas = np.random.randint(0, 6, n)
+plataforma = np.random.uniform(0, 10, n)
+
+# Variable objetivo
+abandono = (
+    (promedio < 6) &
+    (asistencia < 70) &
+    (reprobadas >= 3)
+).astype(int)
+
+# Dataset
+X = np.column_stack([
+    promedio,
+    asistencia,
+    reprobadas,
+    plataforma
+])
+y = abandono
+
+# 🔎 PRUEBAS
+#print("Shape X:", X.shape)
+#print("Primeros registros:\n", X[:5])
+#print("Cantidad abandono:", sum(y))
+
+# DIVISIÓN TRAIN / TEST
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    stratify=y,
+    random_state=42
+)
+
+# ESCALADO
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# 🔎 PRUEBAS
+#print("Train:", X_train.shape)
+#print("Test:", X_test.shape)
+
+
+# ============================================
+# FASE 2: MODELO BASE Y ENTRENAMIENTO
+# ============================================
+from sklearn.neural_network import MLPClassifier
+
+model1 = MLPClassifier(
+    hidden_layer_sizes=(5,), # HIDDEN LAYERS, CAPAS OCULTAS
+    max_iter=50, # EPOCHS, EPOCAS
+    learning_rate_init=0.01, # LEARNING RATE, TASA DE APRENDIZAJE
+    batch_size=32, # BATCH SIZE, TAMAÑO DE LOTE
+    random_state=42
+)
+model1.fit(X_train, y_train) #Entrenamiento
+y_pred1 = model1.predict(X_test) #Predicciones
+
+# 🔎 PRUEBAS
+#print("Predicciones:", y_pred1[:10])
+#print("Número de iteraciones:", model1.n_iter_)
+
+
+# ============================================
+# FASE 3: EVALUACIÓN DEL MODELO
+# ============================================
+
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    confusion_matrix
+)
+
+# CALCULAR MÉTRICAS
+acc1 = accuracy_score(y_test, y_pred1)
+prec1 = precision_score(y_test, y_pred1)
+rec1 = recall_score(y_test, y_pred1)
+f11 = f1_score(y_test, y_pred1)
+
+# MATRIZ DE CONFUSIÓN
+cm = confusion_matrix(y_test, y_pred1)
+
+#print("\nMODELO BASE")
+#print("-" * 40)
+#print(f"{'Accuracy':<15}: {acc1:.4f}")
+#print(f"{'Precision':<15}: {prec1:.4f}")
+#print(f"{'Recall':<15}: {rec1:.4f}")
+#print(f"{'F1':<15}: {f11:.4f}")
+#print("-" * 40)
+#print("\nMatriz de confusión:")
+#print(cm)
+
+#Preguntas:
+# ¿Accuracy es suficiente?
+# ¿Recall es importante aquí?
+
+
+# ============================================
+# FASE 4: ANÁLISIS DE CURVA DE APRENDIZAJE
+# ============================================
+
+import matplotlib.pyplot as plt
+
+plt.plot(model1.loss_curve_)
+plt.title("Curva de entrenamiento Modelo 1")
+plt.xlabel("Iteraciones")
+plt.ylabel("Loss")
+plt.show()
+
+# 🔎 PRUEBA
+#print("Número de iteraciones:", len(model1.loss_curve_))
+
+
+# ============================================
+# FASE 5: MEJORA Y COMPARACIÓN
+# ============================================
+
+# MODELO 2 MEJORADO
+model2 = MLPClassifier(
+    hidden_layer_sizes=(20,10),     # más capacidad de aprendizaje
+    max_iter=300,
+    learning_rate_init=0.001,
+    batch_size=16,    
+    alpha=0.0001,     # REGULARIZACIÓN L2, evita pesos excesivos
+    early_stopping=True,     # EARLY STOPPING, se detiene si no mejora
+    validation_fraction=0.2,
+    random_state=42
+)
+
+model2.fit(X_train, y_train) # ENTRENAMIENTO
+y_pred2 = model2.predict(X_test) # Predicciones
+
+# CALCULAR NUEVAS MÉTRICAS
+acc2 = accuracy_score(y_test, y_pred2)
+prec2 = precision_score(y_test, y_pred2)
+rec2 = recall_score(y_test, y_pred2)
+f12 = f1_score(y_test, y_pred2)
+cm2 = confusion_matrix(y_test, y_pred2)
+
+# 🔎 PRUEBA
+print("Número de iteraciones:", len(model1.loss_curve_))
+print(f"{'Métrica':<15}{'Modelo 1':<15}{'Modelo 2':<15}")
+print("-" * 50)
+print(f"{'Accuracy':<15}{acc1:<15.4f}{acc2:<15.4f}")
+print(f"{'Precision':<15}{prec1:<15.4f}{prec2:<15.4f}")
+print(f"{'Recall':<15}{rec1:<15.4f}{rec2:<15.4f}")
+print(f"{'F1':<15}{f11:<15.4f}{f12:<15.4f}")
+print("-" * 50)
+print("Matriz de confusión")
+print(cm)
+print(cm2)
